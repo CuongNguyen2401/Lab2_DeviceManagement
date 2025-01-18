@@ -40,38 +40,58 @@ namespace Lab2.Models
                     context.SaveChanges();
                 }
 
-
                 var electronics = context.Category.First(c => c.Name == "Electronics");
                 var furniture = context.Category.First(c => c.Name == "Furniture");
 
-                context.Device.AddRange(
-                    new Device
-                    {
-                        Name = "Laptop",
-                        Code = "ELEC001",
-                        CategoryId = electronics.Id,
-                        Status = "Active",
-                        DateOfEntry = DateTime.Now
-                    },
-                    new Device
-                    {
-                        Name = "Smartphone",
-                        Code = "ELEC002",
-                        CategoryId = electronics.Id,
-                        Status = "Active",
-                        DateOfEntry = DateTime.Now.AddDays(-10)
-                    },
-                    new Device
-                    {
-                        Name = "Office Chair",
-                        Code = "FURN001",
-                        CategoryId = furniture.Id,
-                        Status = "Inactive",
-                        DateOfEntry = DateTime.Now.AddMonths(-1)
-                    }
-                );
+                if (!context.Device.Any())
+                {
+                    context.Device.AddRange(
+                        new Device
+                        {
+                            Name = "Laptop",
+                            Code = "ELEC001",
+                            CategoryId = electronics.Id,
+                            Status = "Active",
+                            DateOfEntry = DateTime.Now
+                        },
+                        new Device
+                        {
+                            Name = "Smartphone",
+                            Code = "ELEC002",
+                            CategoryId = electronics.Id,
+                            Status = "Active",
+                            DateOfEntry = DateTime.Now.AddDays(-10)
+                        },
+                        new Device
+                        {
+                            Name = "Office Chair",
+                            Code = "FURN001",
+                            CategoryId = furniture.Id,
+                            Status = "Inactive",
+                            DateOfEntry = DateTime.Now.AddMonths(-1)
+                        }
+                    );
+                    context.SaveChanges();
+                }
 
-                context.SaveChanges();
+                if (!context.User.Any())
+                {
+                    context.User.AddRange(
+                        new User
+                        {
+                            FullName = "John Doe",
+                            Email = "john.doe@example.com",
+                            PhoneNumber = "123-456-7890"
+                        },
+                        new User
+                        {
+                            FullName = "Jane Smith",
+                            Email = "jane.smith@example.com",
+                            PhoneNumber = "098-765-4321"
+                        }
+                    );
+                    context.SaveChanges();
+                }
             }
         }
     }

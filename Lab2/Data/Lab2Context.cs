@@ -22,5 +22,6 @@ namespace Lab2.Data
 
         public DbSet<Lab2.Models.Device> Device { get; set; } = default!;
         public DbSet<Lab2.Models.Category> Category { get; set; } = default!;
+        public DbSet<Lab2.Models.User> User { get; set; } = default!;
     }
 }
